@@ -6,3 +6,6 @@
 	// Exporting all models from here seems like a good idea!
 
 // This is also probably a good place for you to set up your associations
+const Student = require('./student.js')
+
+Student.belongsTo(campus)
