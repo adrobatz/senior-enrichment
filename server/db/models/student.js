@@ -1,31 +1,30 @@
 'use strict';
 
-const db = require('../db');
-
+const Sequelize = require('sequelize');
+const db = require('../index');
 
 const Student = db.define('student', {
-
   firstName: {
-    type: DataTypes.STRING,
+    type: Sequelize.STRING,
     validate: {
       allowNull: false,
     }
   },
   lastName: {
-    type: DataTypes.STRING,
+    type: Sequelize.STRING,
     validate: {
     allowNull: false,
     }
   },
   email: {
-    type: DataTypes.STRING,
+    type: Sequelize.STRING,
     validate: {
       allowNull: false,
       isEmail: true
     }
   },
   gpa: {
-    type: DataTypes.DECIMAL,
+    type: Sequelize.DECIMAL,
     validate: {
       min: 0.0,
       max: 4.0
@@ -39,6 +38,5 @@ const Student = db.define('student', {
     },
   }
 });
-
 
 module.exports = Student;
