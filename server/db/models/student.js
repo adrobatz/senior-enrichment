@@ -6,22 +6,18 @@ const db = require('../index');
 const Student = db.define('student', {
   firstName: {
     type: Sequelize.STRING,
-    validate: {
-      allowNull: false,
-    }
+    allowNull: false,
   },
   lastName: {
     type: Sequelize.STRING,
-    validate: {
     allowNull: false,
-    }
   },
   email: {
     type: Sequelize.STRING,
-    validate: {
       allowNull: false,
+      validate:{
       isEmail: true
-    }
+      }
   },
   gpa: {
     type: Sequelize.DECIMAL,
@@ -32,8 +28,8 @@ const Student = db.define('student', {
   },
 }, {
 
-  setterMethods: {
-    name: function() {
+  getterMethods: {
+    fullName: function() {
      return this.firstName + ' ' + this.lastName
     },
   }

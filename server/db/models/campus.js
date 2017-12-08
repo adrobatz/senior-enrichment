@@ -7,12 +7,11 @@ const Campus = db.define('campus', {
 
   name: {
     type: Sequelize.STRING,
-    validate: {
       allowNull: false,
-    }
   },
   imageUrl: {
     type: Sequelize.STRING,
+    defaultValue: 'http://www.thealmightyguru.com/Reviews/HarryPotter/Images/HogwartsSeal.gif',
   },
   description: {
     type: Sequelize.TEXT,
