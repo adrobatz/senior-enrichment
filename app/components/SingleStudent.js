@@ -6,34 +6,32 @@ export default class SingleStudent extends Component {
   constructor(){
     super();
     this.state = {
-      student: {},
+      student: [],
+      campus: {}
     }
   }
 
-  componentDidMount(){
-    const studentId = this.props.match.params.studentId
-    axios.get(`/api/students/${studentId}`)
-      .then(res => {
-        console.log(res.data)
-        return res.data
-      })
-      .then(student => {
-        console.log("student", student)
-        return this.setState({
-        student: student,
-      })
-      });
+  componentDidMount () {
+  const studentId = this.props.match.params.studentId
+  axios.get(`/api/students/${studentId}`)
+    .then(res => {
+      return res.data})
+    .then(student =>
+      this.setState({ student: student[0], campus: student[0].campus })
+    )
   }
 
-//figure out single campus
   render () {
 
     const student = this.state.student
-
+    const campus = this.state.campus
+    console.log(this.state.campus)
     return (
             <div key={student.id}>
               <h3>{ student.fullName }</h3>
               <p>{student.email}</p>
+              <h3>{campus.name}</h3>
+
             </div>
           )
   }
