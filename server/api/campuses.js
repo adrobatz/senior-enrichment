@@ -14,7 +14,12 @@ router.get('/', function (req, res, next) {
 
 router.get('/:campusId', function (req, res, next) {
   const campusId = req.params.campusId
-  Campus.findAll({where: {id: campusId}})
+  Campus.findAll({
+    where: {id: campusId},
+    include: {
+      model: Student
+    }
+  })
     .then(campuses => res.json(campuses))
     .catch(next);
 });

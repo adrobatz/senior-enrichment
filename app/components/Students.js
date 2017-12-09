@@ -71,6 +71,8 @@
           gpa: event.target.gpa.value,
           campusId: event.target.value
         };
+
+        console.log("studentObj", student)
         dispatch(postStudent(student))
       }
     }

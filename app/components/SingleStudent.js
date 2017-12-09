@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 export default class SingleStudent extends Component {
 
@@ -30,8 +31,9 @@ export default class SingleStudent extends Component {
             <div key={student.id}>
               <h3>{ student.fullName }</h3>
               <p>{student.email}</p>
+              <Link to={`/campuses/${campus.id}`}>
               <h3>{campus.name}</h3>
-
+              </Link>
             </div>
           )
   }

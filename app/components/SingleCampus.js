@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from "axios";
 import {Link} from 'react-router-dom';
+import updateCampus from '../reducers/campuses'
 
 export default class SingleCampus extends Component {
     constructor(){
@@ -17,19 +18,13 @@ export default class SingleCampus extends Component {
   axios.get(`/api/campuses/${campusId}`)
     .then(res => {
       return res.data})
-    .then(campus => {
-      this.setState({ campus: campus[0] })
-    })
-  axios.get(`/api/students`)
-    .then(res => {
-      return res.data})
-    .then(students => {
-      this.setState({ students })
+    .then(campus =>{
+      console.log("campus", campus)
+      return this.setState({ campus: campus[0], students: campus[0].students })
     })
   }
 
   render () {
-    console.log(this.state)
     const campus = this.state.campus
     const students = this.state.students
     var filterArr = students.filter(student => student.campusId === campus.id)
@@ -38,7 +33,7 @@ export default class SingleCampus extends Component {
         <h3>Campus</h3>
           <div className="list-group">
             <div className="list-group-item" key={campus.id}>
-            <h3>{campus.name}</h3>
+            <h3 onChange={this.updateCurrentCampus}>{campus.name}</h3>
             {
               filterArr.map(student =>{
                 return(
@@ -55,5 +50,13 @@ export default class SingleCampus extends Component {
       </div>
     );
   }
+
+updateCurrentCampus(update, event){
+  const updateCampus = this.props.updateCampus
+  const campus = this.state.campusId
+
+  console.log(update)
+}
+
 
 }
