@@ -1,18 +1,17 @@
 import React, {Component} from 'react';
 import axios from "axios";
 import {Link} from 'react-router-dom';
-import updateCampus from '../reducers/campuses';
+import {updateCampus} from '../reducers/campuses';
 import ContentEditable from 'react-contenteditable';
 import store from '../store';
-import updateStudent from '../reducers/students'
+import {updateStudent} from '../reducers/students'
 
 export default class SingleCampus extends Component {
     constructor(){
     super();
     this.state = {
       campus: {},
-      students: [],
-      student: {}
+      students: []
     }
 
     this.onCampusUpdate = this.onCampusUpdate.bind(this)
@@ -35,16 +34,15 @@ componentDidMount () {
   onCampusUpdate(campusObj) {
     const {campus} = this.state;
     this.setState({
-      campus: Object.assign(campus, campusObj)
+      campus: Object.assign({}, campus, campusObj)
     });
     store.dispatch(updateCampus(campus.id, campusObj));
   }
 
-  StudentCampusUpdate(student, campusId) {
-    console.log(student)
-    console.log("campusId", campusId)
+  StudentCampusUpdate(campusId, student) {
+    const {students} = this.state
     this.setState({
-      student: Object.assign(student, campusId)
+      students: [...students, campusId]
     })
     return store.dispatch(updateStudent(student.id, campusId))
 
@@ -54,7 +52,6 @@ componentDidMount () {
     const campus = this.state.campus
     const students = this.state.students
     var filterArr = students.filter(student => student.campusId === campus.id)
-        console.log(this.state.students)
     return (
      <div>
         <h3>Campus</h3>
@@ -69,7 +66,7 @@ componentDidMount () {
               <Link to={`/students/${student.id}`}>
               <h3>{student.fullName}</h3>
               </Link>
-              <span><button onClick={(event) => {this.StudentCampusUpdate(student, {campusId: null})}}>&times;</button></span>
+              <span><button onClick={(event) => {this.StudentCampusUpdate({campusId: null}, student)}}>&times;</button></span>
               </div>
                 )
               })

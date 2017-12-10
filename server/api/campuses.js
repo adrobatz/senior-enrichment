@@ -32,8 +32,9 @@ router.post('/', function (req, res, next) {
 
 router.put('/:campusId', function (req, res, next) {
   const campusId = req.params.campusId
-  Campus.update({where: {id: campusId}})
-    .then(campuses => res.json(campuses))
+  Campus.update(req.body,
+  {returning: true, where: {id: campusId}})
+    .then(campus => res.json(campus))
     .catch(next);
 });
 
