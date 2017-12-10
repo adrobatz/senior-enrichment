@@ -34,11 +34,13 @@ router.post('/', function (req, res, next) {
 });
 
 router.put('/:studentId', function (req, res, next) {
-  const studentId = req.params.studentId
-  Student.update({where: {id: studentId}})
-    .then(students => res.json(students))
+  const studentId = req.params.studentId;
+  Student.update(req.body,
+  {returning: true, where: {id: studentId}})
+    .then(student => res.json(student))
     .catch(next);
 });
+
 
 router.delete('/:studentId', function (req, res, next) {
   const studentId = req.params.studentId
@@ -48,4 +50,3 @@ router.delete('/:studentId', function (req, res, next) {
 });
 
 module.exports = router;
-

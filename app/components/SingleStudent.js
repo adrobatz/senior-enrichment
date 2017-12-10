@@ -1,16 +1,27 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+import ContentEditable from 'react-contenteditable';
+import {fetchStudents, updateStudent} from '../reducers/students';
+import { connect } from 'react-redux';
+import store from '../store';
+
+
 
 export default class SingleStudent extends Component {
 
   constructor(){
     super();
     this.state = {
-      student: [],
+      student: [{
+        firstName: '',
+        lastName: ''
+      }],
       campus: {}
     }
-  }
+
+    this.submitUpdatedStudent = this.submitUpdatedStudent.bind(this)
+ }
 
   componentDidMount () {
   const studentId = this.props.match.params.studentId
@@ -22,19 +33,30 @@ export default class SingleStudent extends Component {
     )
   }
 
-  render () {
+render(){
+const student = this.state.student;
+const campus = this.state.campus
 
-    const student = this.state.student
-    const campus = this.state.campus
-    console.log(this.state.campus)
     return (
-            <div key={student.id}>
-              <h3>{ student.fullName }</h3>
-              <p>{student.email}</p>
+              <div key={student.id}>
+              <ContentEditable onChange={event=>this.onStudentUpdate({firstName: event.target.value})} value={student.firstName} html={ student.firstName} />
+              <ContentEditable onChange={event=>this.onStudentUpdate({lastName: event.target.value})} value={student.lastName} html={ student.lastName} />
+              <ContentEditable onChange={event=>this.onStudentUpdate({email: event.target.value})} value={student.email} html={ student.email} />
               <Link to={`/campuses/${campus.id}`}>
-              <h3>{campus.name}</h3>
+              <ContentEditable html={campus.name}/>
               </Link>
             </div>
           )
+}
+
+  onStudentUpdate(studentObj) {
+
+    const {student} = this.state;
+
+
+    this.setState({
+      student: Object.assign(student, studentObj)
+    });
+    store.dispatch(updateStudent(student.id, studentObj));
   }
 }

@@ -19,7 +19,6 @@ export default class SingleCampus extends Component {
     .then(res => {
       return res.data})
     .then(campus =>{
-      console.log("campus", campus)
       return this.setState({ campus: campus[0], students: campus[0].students })
     })
   }
@@ -54,8 +53,6 @@ export default class SingleCampus extends Component {
 updateCurrentCampus(update, event){
   const updateCampus = this.props.updateCampus
   const campus = this.state.campusId
-
-  console.log(update)
 }
 
 

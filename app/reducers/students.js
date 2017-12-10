@@ -5,6 +5,7 @@ const GET_STUDENTS = 'GET_STUDENTS';
 const GET_STUDENT = 'GET_STUDENT';
 const DELETE_STUDENT = 'DELETE_STUDENT';
 const WRITE_NEW_STUDENT = 'WRITE_NEW_STUDENT';
+const UPDATE_CURRENT_STUDENT = 'UPDATE_CURRENT_STUDENT';
 
 export function getStudents (students) {
   const action ={type: GET_STUDENTS, students};
@@ -23,6 +24,11 @@ export function deleteStudent (studentId) {
 
 export function writeNewStudent (newStudent) {
   const action = {type: WRITE_NEW_STUDENT, newStudent};
+  return action
+}
+
+export function updateCurrentStudent (updatedStudent) {
+  const action = {type: UPDATE_CURRENT_STUDENT, updatedStudent};
   return action
 }
 
@@ -50,6 +56,14 @@ export function postStudent(student){
   }
 }
 
+export function updateStudent (studentId, student){
+  return function thunk(dispatch){
+    return axios.put(`api/students/${studentId}`, student)
+    .then(res => dispatch(updateCurrentStudent(res.data)))
+    .catch(err => console.error(err))
+  }
+}
+
 export function removeStudent(studentId){
   return function thunk(dispatch){
     dispatch(deleteStudent(studentId))
@@ -69,7 +83,12 @@ export default function studentsReducer (state = [], action) {
         return [...state, action.student];
 
       case DELETE_STUDENT:
-        return state.filter(student => student.id !== action.studentId)
+        return state.filter(student => student.id !== action.studentId);
+
+      case UPDATE_CURRENT_STUDENT:
+        return state.map(student => (
+        action.student.id === student.id ? action.student : student
+        ));
 
         case WRITE_NEW_STUDENT:
           return action.newStudent;

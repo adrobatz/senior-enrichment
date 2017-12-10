@@ -34,7 +34,7 @@
               return (
                       <div key={student.id}>
                       <Link to={`/students/${student.id}`}>
-                      <p>{student.fullName}</p>
+                      <p >{student.fullName}</p>
                       </Link>
                       <span><button onClick={(event) => {props.removeStudentOnClick(student.id, event)}}>&times;</button></span>
                       </div>
@@ -72,7 +72,6 @@
           campusId: event.target.value
         };
 
-        console.log("studentObj", student)
         dispatch(postStudent(student))
       }
     }
