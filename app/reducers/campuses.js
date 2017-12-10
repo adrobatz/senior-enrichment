@@ -31,7 +31,7 @@ export function fetchCampuses (){
   return function thunk(dispatch){
     return axios.get('/api/campuses')
       .then(res => res.data)
-      .then(campuses =>{
+      .then(campuses => {
         const action = getCampuses(campuses);
         dispatch(action);
       });
@@ -43,17 +43,17 @@ export function postCampus(campus){
   return function thunk(dispatch){
     return axios.post('/api/campuses', campus)
       .then(res => res.data)
-      .then(newCampus =>{
+      .then(newCampus => {
         const action = getCampus(newCampus);
         dispatch(action);
       })
   }
 }
 
-export function updateCampus(campus){
+export function updateCampus(campusId, campus){
   return function thunk(dispatch){
     return axios.put(`/api/campuses/${campusId}`, campus)
-    .then(res=>dispatch(changeCampus(res.data)))
+    .then(res => dispatch(changeCampus(res.data)))
     .catch(err => console.error(err))
   }
 }
@@ -62,7 +62,7 @@ export function removeCampus(campusId){
   return function thunk(dispatch){
     dispatch(deleteCampus(campusId))
     return axios.delete(`/api/campuses/${campusId}`)
-    .then(res=>res.data)
+    .then(res => res.data)
     .catch(err => console.error(err))
   }
 }
@@ -79,7 +79,7 @@ export default function campusesReducer (state = [], action) {
       case CHANGE_CAMPUS:
         return state.map(campus =>(
           action.campus.id === campus.id ? action.campus : campus
-        ))
+        ));
 
       case DELETE_CAMPUS:
         return state.filter(campus => campus.id !== action.campusId)

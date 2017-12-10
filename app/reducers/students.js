@@ -4,7 +4,6 @@ import axios from 'axios';
 const GET_STUDENTS = 'GET_STUDENTS';
 const GET_STUDENT = 'GET_STUDENT';
 const DELETE_STUDENT = 'DELETE_STUDENT';
-const WRITE_NEW_STUDENT = 'WRITE_NEW_STUDENT';
 const UPDATE_CURRENT_STUDENT = 'UPDATE_CURRENT_STUDENT';
 
 export function getStudents (students) {
@@ -20,11 +19,6 @@ export function getStudent (student) {
 export function deleteStudent (studentId) {
   const action = {type: DELETE_STUDENT, studentId};
   return action;
-}
-
-export function writeNewStudent (newStudent) {
-  const action = {type: WRITE_NEW_STUDENT, newStudent};
-  return action
 }
 
 export function updateCurrentStudent (updatedStudent) {
@@ -87,11 +81,9 @@ export default function studentsReducer (state = [], action) {
 
       case UPDATE_CURRENT_STUDENT:
         return state.map(student => (
-        action.student.id === student.id ? action.student : student
+          action.id === student.id ? action : student
         ));
 
-        case WRITE_NEW_STUDENT:
-          return action.newStudent;
 
     default:
       return state;

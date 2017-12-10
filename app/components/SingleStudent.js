@@ -3,7 +3,6 @@ import axios from 'axios';
 import {Link} from 'react-router-dom';
 import ContentEditable from 'react-contenteditable';
 import {fetchStudents, updateStudent} from '../reducers/students';
-import { connect } from 'react-redux';
 import store from '../store';
 
 
@@ -13,14 +12,11 @@ export default class SingleStudent extends Component {
   constructor(){
     super();
     this.state = {
-      student: [{
-        firstName: '',
-        lastName: ''
-      }],
+      student: [],
       campus: {}
     }
 
-    this.submitUpdatedStudent = this.submitUpdatedStudent.bind(this)
+    this.onStudentUpdate = this.onStudentUpdate.bind(this)
  }
 
   componentDidMount () {

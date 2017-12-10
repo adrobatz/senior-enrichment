@@ -4,17 +4,13 @@ import { connect } from 'react-redux';
 import store from '../store';
 import {fetchCampuses, removeCampus, postCampus} from '../reducers/campuses';
 import {Link} from 'react-router-dom';
-
+import NewCampus from './NewCampus'
 
 function Campuses (props){
-
+console.log(props)
     return(
-           <div>
-          <form onSubmit = {props.submitNewCampus}>
-            <input value={props.campus} name="name" type="text" placeholder="campus name"/>
-            <input value={props.campus} name="description" type="text" placeholder="description"/>
-           <button type="submit"></button>
-      </form>
+          <div>
+          <NewCampus />
            {
             props.campuses.map(campus=>{
               return (
@@ -23,7 +19,7 @@ function Campuses (props){
                         <p>{campus.name}</p>
                         <img src={campus.imageUrl} alt="campus"/>
                       </Link>
-                      <span><button onClick={(event) => {props.removeStudentOnClick(campus.id, event)}}>&times;</button></span>
+                      <span><button onClick={(event) => {props.removeCampusOnClick(campus.id, event)}}>&times;</button></span>
                       </div>
                       )
             })
@@ -38,13 +34,13 @@ function Campuses (props){
 const mapStateToProps = state =>{
   return {
     campuses: state.campuses,
-    // students: fetchCampuses(state.students)
+    students: state.students
   };
 }
 
 const mapDispatchtoProps = (dispatch) => {
   return {
-    removeStudentOnClick (campusId, event) {
+    removeCampusOnClick (campusId, event) {
       dispatch(removeCampus(campusId))
     },
     submitNewCampus (event) {
