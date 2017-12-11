@@ -1,0 +1,176 @@
+/* left styling until the end...SORRY FOR THE WAY IT LOOKS!!!!!*/
+
+*{
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #ffeebf;
+  color: white;
+  font-family: Times;
+  color: black;
+}
+
+h1{
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  letter-spacing: .25rem;
+}
+.link{
+  text-decoration: none;
+  color: #011422;
+}
+.link:hover{
+  color: #d4a00b;
+}
+
+button {
+  background-color:#d7a10d;
+  -moz-border-radius:13px;
+  -webkit-border-radius:13px;
+  border-radius:13px;
+  border:1px solid #ffce47;
+  display: inline-block;
+  color:#ffffff;
+  font-family:Times;
+  font-size:16px;
+  padding:10px 35px;
+  text-decoration:none;
+  text-shadow:0px 1px 0px #493600;
+}
+button:hover {
+  background-color:#ffce47;
+}
+button:active {
+  position:relative;
+  top:1px;
+}
+
+header{
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  margin: 0 4em;
+  padding: 10px;
+  width: calc(100vw - 8em);
+  color: #fff;
+  background-color: rgba(37, 37, 37, 0.8);
+  border-radius: 0 0 1em 1em;
+  z-index: 2;
+  transform: translateY(-1em);
+}
+
+header #logo{
+  height: 75px;
+  width: auto;
+}
+
+header nav{
+  display: flex;
+  float: right;
+}
+.navbarLink {
+  text-decoration: none;
+  color: white;
+  align-self: center;
+  padding: 10px;
+
+}
+
+.navbarLink:hover {
+  color: #ffce46;
+}
+
+.landingIntro {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+.landingIntro .landingIntroText {
+  position: absolute;
+  font-size: 2rem;
+  top: 45vh;
+  color: #fff;
+  text-shadow: 2px 2px #252525;
+  z-index: 1;
+}
+
+.landingIntro .landingIntroImage {
+  width: 100vw;
+  height: auto;
+  opacity: .4;
+}
+
+.newContainer{
+  display: flex;
+  padding-top: 6rem;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.newContainer button{
+  display: block;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.campusList{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.infoList {
+  width: 49%;
+  padding: 10px;
+
+}
+
+.singleItem{
+  padding-top: 6rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.singleCampusName{
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+}
+.students {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.eachStudent{
+  width: 100%;
+}
+
+.singleStudent {
+  padding-top: 6rem;
+    margin: auto;
+    width: 50%;
+    text-align: center;
+}
+
+.singleStudent h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+}
+
+.singleStudent p {
+  font-family: 'Times', serif;
+  font-size: 1rem;
+}
+
+.studentList{
+  margin: auto;
+  width: 50%;
+  text-align: center;
+}
+
+.studentForm {
+
+}

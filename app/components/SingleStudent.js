@@ -34,11 +34,13 @@ const student = this.state.student;
 const campus = this.state.campus
 
     return (
-              <div key={student.id}>
-              <ContentEditable onChange={event=>this.onStudentUpdate({firstName: event.target.value})} value={student.firstName} html={ student.firstName} />
-              <ContentEditable onChange={event=>this.onStudentUpdate({lastName: event.target.value})} value={student.lastName} html={ student.lastName} />
-              <ContentEditable onChange={event=>this.onStudentUpdate({email: event.target.value})} value={student.email} html={ student.email} />
-              <Link to={`/campuses/${campus.id}`}>
+              <div className="singleStudent" key={student.id}>
+              <h2>First Name: </h2><ContentEditable onChange={event=>this.onStudentUpdate({firstName: event.target.value})} value={student.firstName} html={ student.firstName} />
+              <h2>Last Name: </h2><ContentEditable onChange={event=>this.onStudentUpdate({lastName: event.target.value})} value={student.lastName} html={ student.lastName} />
+              <h2>Email: </h2><ContentEditable onChange={event=>this.onStudentUpdate({email: event.target.value})} value={student.email} html={ student.email} />
+              <h2>GPA: </h2><ContentEditable onChange={event=>this.onStudentUpdate({gpa: event.target.value})} value={student.gpa} html={ student.gpa} />
+              <h2>Campus Name: </h2>
+              <Link className="link" to={`/campuses/${campus.id}`}>
               <ContentEditable html={campus.name}/>
               </Link>
             </div>
@@ -48,8 +50,6 @@ const campus = this.state.campus
   onStudentUpdate(studentObj) {
 
     const {student} = this.state;
-
-
     this.setState({
       student: Object.assign(student, studentObj)
     });

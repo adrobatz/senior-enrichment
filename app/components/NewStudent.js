@@ -8,13 +8,14 @@
 function NewStudent (props){
 
   return(
-  <div>
-      <form onSubmit = {props.submitNewStudent}>
-            <input value={props.student} name="firstName" type="text" placeholder="first name" />
-            <input value={props.student} name="lastName" type="text" placeholder="last name" />
-            <input value={props.student} name="email" type="text" placeholder="email" />
-            <input value={props.student} name="gpa" type="text" placeholder="gpa" />
-            <select name="campusId" onChange={props.handleChange} >
+  <div className="newContainer">
+      <form className="studentForm" onSubmit = {props.submitNewStudent}>
+            <h2>Add a New Student here:</h2>
+            <p>First Name: </p><input value={props.student} name="firstName" type="text" placeholder="first name" />
+            <p>Last Name: </p><input value={props.student} name="lastName" type="text" placeholder="last name" />
+            <p>Email: </p><input value={props.student} name="email" type="text" placeholder="email" />
+            <p>GPA: </p><input value={props.student} name="gpa" type="text" placeholder="gpa" />
+            <p>Campus: </p><select name="campusId" onChange={props.handleChange} >
             {
                props.campuses.map(campus =>{
                 return (
@@ -23,7 +24,7 @@ function NewStudent (props){
                })
             }
            </select>
-           <button type="submit" />
+           <button type="submit">Add Student</button>
       </form>
   </div>
   )

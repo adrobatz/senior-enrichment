@@ -18,11 +18,14 @@ import NewStudent from './NewStudent'
            {
             props.students.map(student => {
               return (
-                      <div key={student.id}>
+                      <div className="infoList studentList" key={student.id}>
+                      <h2>{student.fullName}</h2>
+                      <p>{student.email}</p>
+                      <p>{student.gpa}</p>
                       <Link to={`/students/${student.id}`}>
-                      <p >{student.fullName}</p>
+                      <button>View Student Profile</button>
                       </Link>
-                      <span><button onClick={(event) => {props.removeStudentOnClick(student.id, event)}}>&times;</button></span>
+                      <span><button onClick={(event) => {props.removeStudentOnClick(student.id, event)}}>Remove Student Profile</button></span>
                       </div>
                       )
             })

@@ -24,6 +24,7 @@ export default class Main extends Component {
       <HashRouter>
       <div>
         <Navbar />
+
         <Route exact path="/" component={Root} />
         <Route exact path="/students" component={Students} />
         <Route exact path="/campuses" component={Campuses} />

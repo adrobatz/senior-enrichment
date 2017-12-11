@@ -11,19 +11,22 @@ function Campuses (props){
     return(
           <div>
           <NewCampus />
+          <div  className="campusList">
            {
             props.campuses.map(campus=>{
               return (
-                      <div key={campus.id}>
-                      <Link to={`/campuses/${campus.id}`}>
-                        <p>{campus.name}</p>
-                        <img src={campus.imageUrl} alt="campus"/>
+                      <div className="infoList" key={campus.id}>
+                      <Link className="link" to={`/campuses/${campus.id}`}>
+                        <img className="campusImage" src={campus.imageUrl} alt="campus"/>
+                        <h2>{campus.name}</h2>
                       </Link>
-                      <span><button onClick={(event) => {props.removeCampusOnClick(campus.id, event)}}>&times;</button></span>
+                      <p>{campus.description}</p>
+                      <span><button onClick={(event) => {props.removeCampusOnClick(campus.id, event)}}>Remove Campus</button></span>
                       </div>
                       )
             })
           }
+          </div>
           </div>
           )
 

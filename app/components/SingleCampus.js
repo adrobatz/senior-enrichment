@@ -58,24 +58,25 @@ componentDidMount () {
     const students = this.state.students
     var filterArr = students.filter(student => student.campusId === campus.id)
     return (
-     <div>
-        <h3>Campus</h3>
-          <div>
+     <div >
+          <div className="singleItem">
             <div key={campus.id}>
-            <ContentEditable onChange={event=>this.onCampusUpdate({name: event.target.value})} value={campus.name} html={ campus.name} />
+            <ContentEditable className="singleCampusName" onChange={event=>this.onCampusUpdate({name: event.target.value})} value={campus.name} html={ campus.name} />
+          <div className="students">
             {
               filterArr.map(student =>{
 
                 return(
-              <div key={student.id}>
-              <Link to={`/students/${student.id}`}>
+              <div className="eachStudent" key={student.id}>
+              <Link className="link" to={`/students/${student.id}`}>
               <h3>{student.fullName}</h3>
               </Link>
-              <span><button onClick={(event) => {this.StudentCampusUpdate({campusId: null}, student)}}>&times;</button></span>
+              <span><button onClick={(event) => {this.StudentCampusUpdate({campusId: null}, student)}}>Remove Student From Campus</button></span>
               </div>
                 )
               })
               }
+              </div>
           </div>
         </div>
       </div>
