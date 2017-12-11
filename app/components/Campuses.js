@@ -8,29 +8,27 @@ import NewCampus from './NewCampus'
 
 function Campuses (props){
 
-    return(
-          <div>
-          <NewCampus />
-          <div  className="campusList">
-           {
-            props.campuses.map(campus=>{
-              return (
-                      <div className="infoList" key={campus.id}>
+  return(
+         <div>
+         <NewCampus />
+         <div  className="campusList">
+         {
+          props.campuses.map(campus=>{
+            return (
+                    <div className="infoList" key={campus.id}>
                       <Link className="link" to={`/campuses/${campus.id}`}>
-                        <img className="campusImage" src={campus.imageUrl} alt="campus"/>
-                        <h2>{campus.name}</h2>
+                      <img className="campusImage" src={campus.imageUrl} alt="campus"/>
+                      <h2>{campus.name}</h2>
                       </Link>
                       <p>{campus.description}</p>
                       <span><button onClick={(event) => {props.removeCampusOnClick(campus.id, event)}}>Remove Campus</button></span>
-                      </div>
-                      )
-            })
-          }
-          </div>
-          </div>
-          )
-
-
+                    </div>
+                    )
+          })
+        }
+        </div>
+        </div>
+        )
 }
 
 
@@ -47,13 +45,13 @@ const mapDispatchtoProps = (dispatch) => {
       dispatch(removeCampus(campusId))
     },
     submitNewCampus (event) {
-        event.preventDefault();
-        const campus = {
-          name: event.target.name.value,
-          description: event.target.description.value,
-        };
-        dispatch(postCampus(campus))
-      }
+      event.preventDefault();
+      const campus = {
+        name: event.target.name.value,
+        description: event.target.description.value,
+      };
+      dispatch(postCampus(campus))
+    }
   }
 }
 

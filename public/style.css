@@ -1,4 +1,4 @@
-/* left styling until the end...SORRY FOR THE WAY IT LOOKS!!!!!*/
+/* left styling until the end...SORRY!!*/
 
 *{
   box-sizing: border-box;
@@ -129,9 +129,9 @@ header nav{
 
 .singleItem{
   padding-top: 6rem;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  margin: auto;
+  width: 50%;
+  text-align: center;
 }
 
 .singleCampusName{
@@ -150,9 +150,9 @@ header nav{
 
 .singleStudent {
   padding-top: 6rem;
-    margin: auto;
-    width: 50%;
-    text-align: center;
+  margin: auto;
+  width: 50%;
+  text-align: center;
 }
 
 .singleStudent h2 {

@@ -13,26 +13,25 @@ import {fetchStudents} from '../reducers/students'
 export default class Main extends Component {
 
  componentDidMount () {
-    const campusesThunk = fetchCampuses();
-    const studentsThunk = fetchStudents();
-    store.dispatch(campusesThunk);
-    store.dispatch(studentsThunk);
-  }
-
-  render() {
-    return (
-      <HashRouter>
-      <div>
-        <Navbar />
-
-        <Route exact path="/" component={Root} />
-        <Route exact path="/students" component={Students} />
-        <Route exact path="/campuses" component={Campuses} />
-        <Route exact path="/campuses/:campusId" component={SingleCampus} />
-        <Route exact path="/students/:studentId" component={SingleStudent} />
-      </div>
-      </HashRouter>
-           )
-  }
+  const campusesThunk = fetchCampuses();
+  const studentsThunk = fetchStudents();
+  store.dispatch(campusesThunk);
+  store.dispatch(studentsThunk);
 }
+
+render() {
+  return (
+          <HashRouter>
+            <div>
+              <Navbar />
+              <Route exact path="/" component={Root} />
+              <Route exact path="/students" component={Students} />
+              <Route exact path="/campuses" component={Campuses} />
+              <Route exact path="/campuses/:campusId" component={SingleCampus} />
+              <Route exact path="/students/:studentId" component={SingleStudent} />
+            </div>
+          </HashRouter>
+          )
+        }
+      }
 

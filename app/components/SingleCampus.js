@@ -7,7 +7,7 @@ import store from '../store';
 import {updateStudent} from '../reducers/students'
 
 export default class SingleCampus extends Component {
-    constructor(){
+  constructor(){
     super();
     this.state = {
       campus: {},
@@ -19,9 +19,9 @@ export default class SingleCampus extends Component {
   }
 
 
-componentDidMount () {
-  const campusId = this.props.match.params.campusId
-  axios.get(`/api/campuses/${campusId}`)
+  componentDidMount () {
+    const campusId = this.props.match.params.campusId
+    axios.get(`/api/campuses/${campusId}`)
     .then(res => {
       return res.data})
     .then(campus =>{
@@ -49,7 +49,6 @@ componentDidMount () {
       students: [...students, campusId]
     })
     store.dispatch(updateStudent(student.id, campusId))
-
   }
 
 
@@ -58,30 +57,29 @@ componentDidMount () {
     const students = this.state.students
     var filterArr = students.filter(student => student.campusId === campus.id)
     return (
-     <div >
-          <div className="singleItem">
-            <div key={campus.id}>
-            <ContentEditable className="singleCampusName" onChange={event=>this.onCampusUpdate({name: event.target.value})} value={campus.name} html={ campus.name} />
-          <div className="students">
-            {
-              filterArr.map(student =>{
+          <div >
+            <div className="singleItem">
+              <div key={campus.id}>
+                <ContentEditable className="singleCampusName" onChange={event=>this.onCampusUpdate({name: event.target.value})} value={campus.name} html={ campus.name} />
+                <div className="students">
+                {
+                  filterArr.map(student =>{
 
-                return(
-              <div className="eachStudent" key={student.id}>
-              <Link className="link" to={`/students/${student.id}`}>
-              <h3>{student.fullName}</h3>
-              </Link>
-              <span><button onClick={(event) => {this.StudentCampusUpdate({campusId: null}, student)}}>Remove Student From Campus</button></span>
+                    return(
+                    <div className="eachStudent" key={student.id}>
+                    <Link className="link" to={`/students/${student.id}`}>
+                    <h3>{student.fullName}</h3>
+                    </Link>
+                    <span><button onClick={(event) => {this.StudentCampusUpdate({campusId: null}, student)}}>Remove Student From Campus</button></span>
+                    </div>
+                    )
+                  })
+                }
+                </div>
               </div>
-                )
-              })
-              }
-              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    );
+            );
   }
-
 }
 
