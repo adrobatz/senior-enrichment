@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from "axios";
 import {Link} from 'react-router-dom';
-import {updateCampus} from '../reducers/campuses';
+import {updateCampus, fetchCampuses} from '../reducers/campuses';
 import ContentEditable from 'react-contenteditable';
 import store from '../store';
 import {updateStudent} from '../reducers/students'
@@ -28,8 +28,12 @@ componentDidMount () {
       return this.setState({ campus: campus[0], students: campus[0].students })
     })
 
+    this.unsubscribe = store.subscribe(() => this.setState(store.getState()));
   }
 
+  componentWillUnmount () {
+    this.unsubscribe();
+  }
 
   onCampusUpdate(campusObj) {
     const {campus} = this.state;
@@ -44,9 +48,10 @@ componentDidMount () {
     this.setState({
       students: [...students, campusId]
     })
-    return store.dispatch(updateStudent(student.id, campusId))
+    store.dispatch(updateStudent(student.id, campusId))
 
   }
+
 
   render () {
     const campus = this.state.campus

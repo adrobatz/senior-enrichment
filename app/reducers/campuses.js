@@ -78,6 +78,8 @@ export default function campusesReducer (state = [], action) {
 
       case CHANGE_CAMPUS:
         return state.map(campus =>(
+                                   console.log(action),
+                                   console.log(campus),
           action.campus.id === campus.id ? action.campus : campus
         ));
 

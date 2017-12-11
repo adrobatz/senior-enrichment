@@ -14,10 +14,9 @@ function NewStudent (props){
             <input value={props.student} name="lastName" type="text" placeholder="last name" />
             <input value={props.student} name="email" type="text" placeholder="email" />
             <input value={props.student} name="gpa" type="text" placeholder="gpa" />
-            <select onChange={props.handleChange} >
+            <select name="campusId" onChange={props.handleChange} >
             {
                props.campuses.map(campus =>{
-
                 return (
                   <option value={campus.id} key={campus.id}>{campus.name}</option>
                )
@@ -44,13 +43,14 @@ function NewStudent (props){
         console.log(event.target.value)
       },
       submitNewStudent (event) {
+        var campusId = Number(event.target.campusId.value)
         event.preventDefault();
         const student = {
           firstName: event.target.firstName.value,
           lastName: event.target.lastName.value,
           email: event.target.email.value,
           gpa: event.target.gpa.value,
-          campusId: event.target.value
+          campusId: campusId
         };
         dispatch(postStudent(student))
       }

@@ -7,7 +7,7 @@ import {Link} from 'react-router-dom';
 import NewCampus from './NewCampus'
 
 function Campuses (props){
-console.log(props)
+
     return(
           <div>
           <NewCampus />
